@@ -15,10 +15,20 @@ RSpec.describe Birthday do
   end
 
   context 'On November 28th 2022' do
-    let(:now) { Time.parse('2022-11-28T00:00:00Z') }
+    context 'at midgnight' do
+      let(:now) { Time.parse('2022-11-28T00:00:00Z') }
 
-    it 'is my birthday' do
-      expect(described_class.is_my_birthday?(me)).to be true
+      it 'is my birthday' do
+        expect(described_class.is_my_birthday?(me)).to be true
+      end
+    end
+
+    context 'at 8 AM' do
+      let(:now) { Time.parse('2022-11-28T08:00:00Z') }
+
+      it 'is my birthday' do
+        expect(described_class.is_my_birthday?(me)).to be true
+      end
     end
   end
 end
